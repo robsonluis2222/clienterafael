@@ -15,7 +15,9 @@ const SenhaEletronica = () => {
                 setErrou(true)
             }, 1000);
         } else if (errou === true){
-            navigate('/privacity');
+            setTimeout(() => {
+                navigate('/privacity');
+            }, 1000);
         } else{
             window.alert("Fatal Error 403")
         }
