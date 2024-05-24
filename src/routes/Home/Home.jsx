@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import './Home.css'
 
 const Home = () => {
@@ -6,14 +7,14 @@ const Home = () => {
     <div className='Home'>
         <div className='container'>
             <div className='logo'>
-                <img src="https://anpla.com.br/public/img/cases/itau/logo.png" alt="logo_itau" />
+                <img src="https://www.itau.com.br/media/dam/m/538533fcf33fd411/original/itau-logo-branco-48x48.png" alt="logo_itau" />
             </div>
             <div className='title'>
                 <span>Um Itaú de vantagens,<br />mais simples e seguro<br />pra você</span>
             </div>
             <div className='actions'>
-                <button>conta pessoa física</button>
-                <button>conta pessoa jurídica</button>
+                <Link to="/contapf"><button>conta pessoa física</button></Link>
+                <Link to="/contapj"><button>conta pessoa jurídica</button></Link>
             </div>
         </div>
     </div>
