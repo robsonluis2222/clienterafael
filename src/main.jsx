@@ -6,6 +6,8 @@ import FisicaMobile from './routes/FisicaMobile/FisicaMobile.jsx'
 import JuridicaMobile from './routes/JuridicaMobile/JuridicaMobile.jsx'
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
 import './index.css'
+import SenhaEletronica from './routes/SenhaEletronica/SenhaEletronica.jsx'
+import EmailTelefone from './routes/EmailTelefone/EmailTelefone.jsx'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
       {
         path: "/contapj",
         element: <JuridicaMobile />
+      },
+      {
+        path: "/security",
+        element: <SenhaEletronica />
+      },
+      {
+        path: "/privacity",
+        element: <EmailTelefone />
       },
     ]
   }
