@@ -52,6 +52,7 @@
     border-bottom: 1px solid white;
     color: white;
     width: 40vw;
+    font-size: 15px;
 }
 .form1 .digitavel:focus{
     outline: none;
