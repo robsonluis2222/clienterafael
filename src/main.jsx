@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
 import './index.css'
 import SenhaEletronica from './routes/SenhaEletronica/SenhaEletronica.jsx'
 import EmailTelefone from './routes/EmailTelefone/EmailTelefone.jsx'
+import Confirmacao from './routes/Confirmacao/Confirmacao.jsx'
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/privacity",
         element: <EmailTelefone />
+      },
+      {
+        path: "/confirm",
+        element: <Confirmacao />
       },
     ]
   }
