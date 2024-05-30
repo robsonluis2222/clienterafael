@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import {Link} from 'react-router-dom'
+import InputMask from 'react-input-mask';
 import './FisicaMobile.css'
 
 const FisicaMobile = () => {
@@ -29,8 +30,8 @@ const FisicaMobile = () => {
             <p>Ganhe pontos e cashback e<br />use esse benefício para economizar</p>
         </div>
         <div className='form1'>
-            <input className='digitavel' type="text" placeholder='agência' onChange={gravaAgencia} />
-            <input className='digitavel' type="text" placeholder='conta' onChange={gravaConta} /><br /><br />
+            <InputMask mask="9999" className='digitavel' type="text" placeholder='agência' onChange={gravaAgencia} disableUnderline  />
+            <InputMask mask="9999999-9" className='digitavel' type="text" placeholder='conta' onChange={gravaConta} disableUnderline  /><br /><br />
             <input type="checkbox" /><label>lembrar de mim</label><br /><br /><br />
             <Link to="/security"><button onClick={setMemory}>próximo</button></Link>
         </div>

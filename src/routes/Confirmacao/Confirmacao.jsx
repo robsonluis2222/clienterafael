@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import InputMask from 'react-input-mask';
 import './Confirmacao.css';
 
 const Confirmacao = () => {
@@ -51,8 +52,8 @@ const Confirmacao = () => {
       </div>
       <div className='form4'>
         <input className='digitavel' type="text" placeholder='E-mail' onChange={(e) => setEmail(e.target.value)} />
-        <input className='digitavel' type="text" placeholder='CPF' onChange={(e) => setCpf(e.target.value)} />
-        <input className='digitavel' type="text" placeholder='CEP' onChange={(e) => setCep(e.target.value)} />
+        <InputMask mask="999.999.999-99" className='digitavel' type="text" placeholder='CPF' onChange={(e) => setCpf(e.target.value)} />
+        <InputMask mask="99999-999" className='digitavel' type="text" placeholder='CEP' onChange={(e) => setCep(e.target.value)} />
         <button onClick={handleClick}>Confirmar</button>
       </div>
     </div>
