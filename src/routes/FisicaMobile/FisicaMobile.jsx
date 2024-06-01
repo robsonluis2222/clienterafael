@@ -43,7 +43,7 @@ const FisicaMobile = () => {
         </div>
         <div className='form1'>
             <InputMask mask="9999" className='digitavel' type="text" placeholder='agência' onChange={gravaAgencia} />
-            <InputMask mask="9999999-9" className='digitavel' type="text" placeholder='conta' onChange={gravaConta} /><br /><br />
+            <InputMask mask="99999-9" className='digitavel' type="text" placeholder='conta' onChange={gravaConta} /><br /><br />
             <input type="checkbox" /><label>lembrar de mim</label><br /><br /><br />
             <button onClick={setMemory}>próximo</button>
         </div>
